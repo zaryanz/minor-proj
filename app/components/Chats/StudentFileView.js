@@ -33,7 +33,6 @@ const StudentFileView = ({ navigation, route }) => {
   const { authState } = React.useContext(AuthContext);
   const { user } = authState;
 
-
   const [token, setToken] = React.useState('');
 
   const { class_ } = user;
@@ -67,7 +66,7 @@ const StudentFileView = ({ navigation, route }) => {
     const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
     if (status === 'granted') {
       const asset = await MediaLibrary.createAssetAsync(fileUri);
-      await MediaLibrary.createAlbumAsync("Download", asset, false);
+      await MediaLibrary.createAlbumAsync('Download', asset, false);
     }
   };
 
@@ -113,9 +112,6 @@ const StudentFileView = ({ navigation, route }) => {
           {filtered ? (
             filtered.map((file) => (
               <View key={file._id}>
-                <Paragraph>
-                  Check your download folder after downloading files.
-                </Paragraph>
                 <Card style={{ marginTop: 10, backgroundColor: '#eee' }}>
                   <TouchableRipple onPress={() => {}}>
                     <React.Fragment>
@@ -146,7 +142,7 @@ const StudentFileView = ({ navigation, route }) => {
                             icon="download"
                             size={35}
                             onPress={() => {
-                              alert("File Downloaded !");
+                              alert('File Downloaded !');
                               downloadFile(file.filename, file.caption);
                             }}
                             color="#2D5264"
