@@ -11,7 +11,9 @@ import {
   Searchbar,
   Button,
   IconButton,
+  Text
 } from 'react-native-paper';
+
 
 import * as MediaLibrary from 'expo-media-library';
 import * as FileSystem from 'expo-file-system';
@@ -112,6 +114,7 @@ const Files = ({ navigation, route }) => {
                             <Title>{file.caption}</Title>
 
                             <Paragraph>Teacher :{file.teacherName} </Paragraph>
+                            
                             <View>
                               <Paragraph>
                                 Date: {file.createdAt.slice(0, 10)}
