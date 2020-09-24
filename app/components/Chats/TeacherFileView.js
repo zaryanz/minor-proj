@@ -104,12 +104,12 @@ const Files = ({ navigation, route }) => {
           {filtered ? (
             filtered.map((file) => (
               <View key={file._id}>
+                <Paragraph>
+                  Check your download folder after downloading files.
+                </Paragraph>
                 <Card style={{ marginTop: 10, backgroundColor: '#eee' }}>
                   <TouchableRipple onPress={() => {}}>
                     <React.Fragment>
-                      <Paragraph>
-                        Check your download folder after downloading file.
-                      </Paragraph>
                       <View style={{ display: 'flex', flexDirection: 'row' }}>
                         <View>
                           <Card.Content>
