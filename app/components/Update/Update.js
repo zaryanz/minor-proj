@@ -2,7 +2,7 @@ import * as React from 'react';
 import Dialog, { DialogContent } from 'react-native-popup-dialog';
 import { View, StyleSheet, Text, Image, Linking } from 'react-native';
 
-const Update = () => {
+const Update = ({ updateObj }) => {
   const [visible, setVisible] = React.useState(true);
   return (
     <View style={styles.container}>
@@ -21,11 +21,11 @@ const Update = () => {
               Checking For Updates !!
             </Text>
             <Text style={{ fontWeight: '900', color: 'black', fontSize: 16 }}>
-              Description:
+              Description: {updateObj.description}
             </Text>
             <Text
               style={{ color: 'blue', fontSize: 16 }}
-              onPress={() => Linking.openURL('http://google.com')}
+              onPress={() => Linking.openURL(updateObj.URL)}
             >
               Tap to download the latest version.
             </Text>
