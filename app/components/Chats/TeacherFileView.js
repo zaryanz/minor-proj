@@ -54,13 +54,12 @@ const Files = ({ navigation, route }) => {
   };
 
   const saveFile = async (fileUri) => {
-    const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-    if (status === 'granted') {
-      const asset = await MediaLibrary.createAssetAsync(fileUri);
-      await MediaLibrary.createAlbumAsync('Download', asset, false);
-      alert('File downloaded !!');
-    }
-  };
+      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+      if (status === "granted") {
+        const asset = await MediaLibrary.createAssetAsync(fileUri);
+        await MediaLibrary.createAlbumAsync("Download", asset, false);
+      }
+  }
 
   const downloadFile = (filename, caption) => {
     const uri = URL + `/documents/file/${filename}`;
@@ -136,6 +135,7 @@ const Files = ({ navigation, route }) => {
                             icon="download"
                             size={35}
                             onPress={() => {
+                              alert('File downloaded !!');
                               downloadFile(file.filename, file.caption);
                             }}
                             color="#2D5264"
