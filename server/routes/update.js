@@ -30,13 +30,13 @@ router.post('/add', async (req, res) => {
   }
 });
 
-router.get('/view/:id', async (req, res) => {
+router.get('/view/', async (req, res) => {
   try {
     console.log(req.params.id);
-    const update_ = await Update.findById(req.params.id);
+    const update_ = await Update.find();
     return res.json({
       sucess: true,
-      data: update_,
+      data: update_[0],
     });
   } catch (err) {
     console.log(err);

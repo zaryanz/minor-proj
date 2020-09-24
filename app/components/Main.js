@@ -25,8 +25,7 @@ const Main = () => {
     update: false,
   });
   const url = URL;
-  const updateId = "5f6c748faf7f2f227ff6ae52";
-  const abcd = url + "/update/view/" + updateId;
+  const abcd = url + "/update/view/";
 
   const getJwt = async () => {
     const jwt = AsyncStorage.getItem("@jwt");
