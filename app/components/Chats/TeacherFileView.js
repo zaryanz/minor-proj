@@ -103,9 +103,6 @@ const Files = ({ navigation, route }) => {
           {filtered ? (
             filtered.map((file) => (
               <View key={file._id}>
-                <Paragraph>
-                  Check your download folder after downloading files.
-                </Paragraph>
                 <Card style={{ marginTop: 10, backgroundColor: '#eee' }}>
                   <TouchableRipple onPress={() => {}}>
                     <React.Fragment>
