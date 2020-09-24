@@ -11,9 +11,8 @@ import {
   Searchbar,
   Button,
   IconButton,
-  Text
+  Text,
 } from 'react-native-paper';
-
 
 import * as MediaLibrary from 'expo-media-library';
 import * as FileSystem from 'expo-file-system';
@@ -24,7 +23,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { URL } from '../../config';
 import adminStyles from '../admin/AdminStyles';
 import { AuthContext } from '../../context/AuthContext';
-const LeftContent = (props) => <Avatar.Icon {...props} icon='folder' />;
+const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
 
 const Files = ({ navigation, route }) => {
   const url = URL;
@@ -55,25 +54,25 @@ const Files = ({ navigation, route }) => {
   };
 
   const saveFile = async (fileUri) => {
-      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-      if (status === "granted") {
-        const asset = await MediaLibrary.createAssetAsync(fileUri);
-        await MediaLibrary.createAlbumAsync("Download", asset, false);
-        alert('File downloaded !!');
-      }
-  }
+    const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+    if (status === 'granted') {
+      const asset = await MediaLibrary.createAssetAsync(fileUri);
+      await MediaLibrary.createAlbumAsync('Download', asset, false);
+      alert('File downloaded !!');
+    }
+  };
 
   const downloadFile = (filename, caption) => {
     const uri = URL + `/documents/file/${filename}`;
     let fileUri = FileSystem.documentDirectory + caption + '.pdf';
     FileSystem.downloadAsync(uri, fileUri)
-    .then(({ uri }) => {
+      .then(({ uri }) => {
         saveFile(uri);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
-      })
-  }
+      });
+  };
 
   React.useEffect(() => {
     getFiles();
@@ -96,7 +95,7 @@ const Files = ({ navigation, route }) => {
   return (
     <React.Fragment>
       <Searchbar
-        placeholder='Search file..'
+        placeholder="Search file.."
         onChangeText={onChangeSearch}
         value={searchQuery}
       />
@@ -108,13 +107,14 @@ const Files = ({ navigation, route }) => {
                 <Card style={{ marginTop: 10, backgroundColor: '#eee' }}>
                   <TouchableRipple onPress={() => {}}>
                     <React.Fragment>
+                      <Paragraph>
+                        Check your download folder after downloading file.
+                      </Paragraph>
                       <View style={{ display: 'flex', flexDirection: 'row' }}>
                         <View>
                           <Card.Content>
                             <Title>{file.caption}</Title>
-
                             <Paragraph>Teacher :{file.teacherName} </Paragraph>
-                            
                             <View>
                               <Paragraph>
                                 Date: {file.createdAt.slice(0, 10)}
@@ -151,7 +151,7 @@ const Files = ({ navigation, route }) => {
             <View style={styles.container}>
               <ActivityIndicator
                 animating={true}
-                size='large'
+                size="large"
                 style={styles.loading}
               />
             </View>
@@ -161,7 +161,7 @@ const Files = ({ navigation, route }) => {
       {user.rank === '1' ? (
         <FAB
           style={styles.fab}
-          icon='plus'
+          icon="plus"
           onPress={() =>
             navigation.navigate('Add', {
               classId: class_,
