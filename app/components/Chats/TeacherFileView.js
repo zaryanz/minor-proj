@@ -59,7 +59,6 @@ const Files = ({ navigation, route }) => {
       if (status === "granted") {
         const asset = await MediaLibrary.createAssetAsync(fileUri);
         await MediaLibrary.createAlbumAsync("Download", asset, false);
-        alert('File downloaded !!');
       }
   }
 
@@ -136,6 +135,7 @@ const Files = ({ navigation, route }) => {
                             icon="download"
                             size={35}
                             onPress={() => {
+                              alert('File downloaded !!');
                               downloadFile(file.filename, file.caption);
                             }}
                             color="#2D5264"

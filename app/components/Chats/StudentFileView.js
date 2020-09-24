@@ -33,8 +33,10 @@ const StudentFileView = ({ navigation, route }) => {
   const { authState } = React.useContext(AuthContext);
   const { user } = authState;
 
+
+  const [token, setToken] = React.useState('');
+
   const { class_ } = user;
-  // const { class_ } = route.params;
 
   const date = new Date();
   const todayDate = date.getDate();
@@ -66,6 +68,7 @@ const StudentFileView = ({ navigation, route }) => {
     if (status === "granted") {
       const asset = await MediaLibrary.createAssetAsync(fileUri);
       await MediaLibrary.createAlbumAsync("Download", asset, false);
+      // notify(token, "new message", "hello there how are you doing", "default")
       alert("File downloaded.");
     }
   };
@@ -142,6 +145,7 @@ const StudentFileView = ({ navigation, route }) => {
                             icon="download"
                             size={35}
                             onPress={() => {
+                              alert("File Downloaded !");
                               downloadFile(file.filename, file.caption);
                             }}
                             color="#2D5264"
@@ -176,18 +180,6 @@ const StudentFileView = ({ navigation, route }) => {
           )}
         </View>
       </ScrollView>
-      {/* <FAB
-        style={styles.fab}
-        icon='plus'
-        onPress={() =>
-          navigation.navigate('Add', {
-            // classId: class_,
-            teacherId: user._id,
-            flag,
-            setFlag,
-          })
-        }
-      /> */}
     </React.Fragment>
   );
 };

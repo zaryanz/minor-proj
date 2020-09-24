@@ -12,6 +12,7 @@ import { URL } from "../config";
 import { StyleSheet, View } from "react-native";
 import LoginStack from "./OTP/LoginStack";
 
+
 const Stack = createStackNavigator();
 
 const Main = () => {
