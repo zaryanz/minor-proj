@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from "react";
+import React, { Fragment, useContext, useEffect } from "react";
 import { Card, Avatar, TouchableRipple } from "react-native-paper";
 import { StyleSheet } from "react-native";
 
@@ -24,7 +24,11 @@ const ClassIcon = (props) => (
 const BrowseNotice = ({ navigation }) => {
   const {
     authState: { user },
+    Logout,
   } = useContext(AuthContext);
+  // useEffect(() => {
+  //   Logout();
+  // }, []);
   return (
     <Fragment>
       <Card style={globalStyles.card}>

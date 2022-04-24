@@ -12,14 +12,12 @@ import { URL } from "../config";
 import { StyleSheet, View } from "react-native";
 import LoginStack from "./OTP/LoginStack";
 
-
 const Stack = createStackNavigator();
 
 const Main = () => {
   const [loading, setLoading] = useState(false);
-  const { authState, getUser, setAuthState, initialState } = useContext(
-    AuthContext
-  );
+  const { authState, getUser, setAuthState, initialState } =
+    useContext(AuthContext);
   const { isLoggedIn, user } = authState;
   const [updateObj, setUpdateObj] = useState({
     update: false,
@@ -68,36 +66,36 @@ const Main = () => {
     console.log(authState);
   }, [authState]);
 
-  if (!updateObj.status) {
-    // if (user.rank === '0' || user.rank === '1' || user.rank === '2') {
-    return (
-      <Fragment>
-        {!loading ? (
-          !isLoggedIn ? (
-            <LoginStack />
-          ) : (
-            <BottomNavigator />
-          )
+  // if (!updateObj?.status) {
+  // if (user.rank === '0' || user.rank === '1' || user.rank === '2') {
+  return (
+    <Fragment>
+      {!loading ? (
+        !isLoggedIn ? (
+          <LoginStack />
         ) : (
-          <View
-            style={{
-              alignItems: "center",
-              justifyContent: "center",
-              height: "100%",
-            }}
-          >
-            <ActivityIndicator
-              animating={true}
-              size="large"
-              style={{ alignSelf: "center" }}
-            />
-          </View>
-        )}
-      </Fragment>
-    );
-  } else {
-    return <Update updateObj={updateObj} />;
-  }
+          <BottomNavigator />
+        )
+      ) : (
+        <View
+          style={{
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100%",
+          }}
+        >
+          <ActivityIndicator
+            animating={true}
+            size="large"
+            style={{ alignSelf: "center" }}
+          />
+        </View>
+      )}
+    </Fragment>
+  );
+  // } else {
+  //   return <Update updateObj={updateObj} />;
+  // }
 };
 
 // } else {

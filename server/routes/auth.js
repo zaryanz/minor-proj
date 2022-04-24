@@ -4,7 +4,7 @@ router = Router();
 
 const auth = require("../middleware/auth");
 
-router.get("/login", auth, (req, res) => {
+router.get("/login", (req, res) => {
   res.json({ success: "true" });
 });
 

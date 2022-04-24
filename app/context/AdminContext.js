@@ -8,7 +8,7 @@ import React, {
 import axios from "axios";
 import AsyncStorage from "@react-native-community/async-storage";
 
-import { URL } from '../config';
+import { URL } from "../config";
 
 import { AuthContext } from "./AuthContext";
 
@@ -42,8 +42,11 @@ const AdminContextProvider = (props) => {
   const getAllData = async () => {
     setProfileLoading(true);
     let res1 = await axios.get(url + "/class/all", { headers });
+    console.log("RES 1", JSON.stringify(res1.data.data));
     let res2 = await axios.get(url + "/student/teachers/all", { headers });
+    console.log("RES 2", res2.data);
     let res3 = await axios.get(url + "/student/students/all", { headers });
+    console.log("RES 3", res3.data);
 
     setCurrClass(res1.data.data[0]._id);
     setAdminState({

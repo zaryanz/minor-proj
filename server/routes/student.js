@@ -190,15 +190,8 @@ router.post("/update/teacher", auth, admin, async (req, res) => {
 router.post("/add", async (req, res) => {
   let obj = req.body;
   obj = JSON.parse(JSON.stringify(obj).replace(/"\s+|\s+"/g, '"'));
-  const {
-    firstName,
-    lastName,
-    email,
-    rank,
-    studentClass,
-    teacherClass,
-    info,
-  } = obj;
+  const { firstName, lastName, email, rank, studentClass, teacherClass, info } =
+    obj;
   const stu = await Student.findOne({ email });
   const tea = await Teacher.findOne({ email });
   if (stu || tea) {
@@ -259,6 +252,7 @@ router.post("/add", async (req, res) => {
       res.json({ token, name, email, rank });
     } else if (rank === "2") {
       const admin = new Admin({ name, email, password, rank });
+      console.log("ADMIN", admin);
       await admin.save();
       const payload = {
         data: {
@@ -387,7 +381,7 @@ router.post("/forgot/verify", async (req, res) => {
   const otpTime = new Date(otp.date);
   let timeDiff = timeNow - otpTime;
   console.log(timeDiff);
-  if (timeDiff < 5*60*1000 && otpStr === otp.otpStr) {
+  if (timeDiff < 5 * 60 * 1000 && otpStr === otp.otpStr) {
     const newPass = genRandPass();
     const salt = await bcrypt.genSalt();
     const newPassSave = await bcrypt.hash(newPass, salt);
@@ -445,7 +439,7 @@ router.post("/login", async (req, res) => {
   }
   user = await Teacher.findOne({ email });
   if (user) {
-    console.log("hi");
+    console.log("hi teacher");
     const { name, rank, teacherClass } = user;
     const passMatches = await bcrypt.compare(password, user.password);
     if (passMatches) {
@@ -460,9 +454,12 @@ router.post("/login", async (req, res) => {
   }
   user = await Admin.findOne({ email });
   if (user) {
-    console.log("hi");
+    console.log("hi admin");
     const { name, rank } = user;
+    console.log("USER BOI", user, obj);
     const passMatches = await bcrypt.compare(password, user.password);
+    // const passMatches = password === user.password;
+    console.log("PAS MATCH", passMatches);
     if (passMatches) {
       const payload = {
         data: {

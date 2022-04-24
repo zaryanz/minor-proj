@@ -14,6 +14,7 @@ const AuthContextProvider = (props) => {
   const LogIn = async (values) => {
     try {
       let data = await axios.post(URL + "/student/login", values);
+      console.log(data);
       const { token } = data.data;
       // const { token, email, name, rank, id } = data.data;
       // let class_;
@@ -32,6 +33,7 @@ const AuthContextProvider = (props) => {
       //   },
       //   getClassName()
       // );
+      console.log(data.data);
       await AsyncStorage.setItem("@jwt", token);
       axios.defaults.headers.common["auth-token"] = token;
       setAuthState({
@@ -40,7 +42,7 @@ const AuthContextProvider = (props) => {
         token: token,
       });
     } catch (error) {
-      console.log(error);
+      console.log(error, "ERR");
       createErrorAlert();
     }
   };

@@ -15,6 +15,7 @@ import { AdminContext } from "../../context/AdminContext";
 
 import adminStyles from "./AdminStyles";
 import AttendanceClassList from "./AttendanceClassList";
+import AuthContext from "../../context/AuthContext";
 
 const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
 
